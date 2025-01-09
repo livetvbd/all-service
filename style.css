@@ -1,1 +1,75 @@
 
+<style>
+    #login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    #login-form h1 {
+        font-size: 24px;
+        color: #fff;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    #login-form input {
+        margin: 10px 0;
+        padding: 12px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+        border: 2px solid #007BFF;
+        border-radius: 5px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        text-align: center;
+        transition: background 0.3s, border-color 0.3s;
+    }
+
+    #login-form input:focus {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #00BFFF;
+    }
+
+    #login-form button {
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        background: linear-gradient(90deg, #007BFF, #00BFFF);
+        box-shadow: 0 4px 6px rgba(0, 123, 255, 0.4);
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    #login-form button:hover {
+        background: linear-gradient(90deg, #0056b3, #008CFF);
+        transform: scale(1.05);
+    }
+
+    #login-form button:active {
+        transform: scale(0.98);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
