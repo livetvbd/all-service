@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text File Generator</title>
+    <title>Advanced Text File Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,7 +35,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
             padding: 40px;
             transition: all 0.3s ease;
         }
@@ -63,8 +63,7 @@
         }
         
         input[type="text"], 
-        select, 
-        textarea {
+        select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e9ecef;
@@ -75,16 +74,44 @@
         }
         
         input[type="text"]:focus, 
-        select:focus, 
+        select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .textarea-container {
+            position: relative;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s;
+        }
+        
         textarea:focus {
             border-color: var(--primary);
             outline: none;
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
         
-        textarea {
-            min-height: 150px;
-            resize: vertical;
+        .char-count {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #666;
         }
         
         .btn {
@@ -123,7 +150,6 @@
             border-radius: 8px;
             background-color: #f8f9fa;
             border-left: 4px solid var(--primary);
-            display: none;
         }
         
         .file-preview p {
@@ -140,13 +166,17 @@
             .container {
                 padding: 30px 20px;
             }
+            
+            textarea {
+                min-height: 200px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Text File Generator</h1>
+        <h1>Advanced Text File Generator</h1>
         
         <div class="form-group">
             <label for="filename">File Name</label>
@@ -171,7 +201,10 @@
         
         <div class="form-group">
             <label for="content">File Content</label>
-            <textarea id="content" placeholder="Enter your text content here..."></textarea>
+            <div class="textarea-container">
+                <textarea id="content" placeholder="Enter your text content here... (unlimited text allowed)"></textarea>
+                <div class="char-count" id="charCount">0 characters</div>
+            </div>
         </div>
         
         <button class="btn" id="downloadBtn">
@@ -179,7 +212,8 @@
         </button>
         
         <div class="file-preview" id="filePreview">
-            <p>Your file will be saved as: <span class="filename" id="previewFilename">example.txt</span></p>
+            <p>Your file will be saved as: <span class="filename" id="previewFilename">untitled.txt</span></p>
+            <p id="fileSizeInfo">File size: 0 KB</p>
         </div>
     </div>
 
@@ -191,17 +225,33 @@
             const downloadBtn = document.getElementById('downloadBtn');
             const filePreview = document.getElementById('filePreview');
             const previewFilename = document.getElementById('previewFilename');
+            const charCount = document.getElementById('charCount');
+            const fileSizeInfo = document.getElementById('fileSizeInfo');
             
-            // Update file preview when inputs change
+            // Update character count and file preview
+            function updateCounters() {
+                const text = contentTextarea.value;
+                const charLength = text.length;
+                charCount.textContent = `${charLength.toLocaleString()} characters`;
+                
+                // Estimate file size (very rough estimation)
+                const sizeInKB = Math.ceil(charLength / 1024 * 1.2); // Adding 20% overhead
+                fileSizeInfo.textContent = `File size: ${sizeInKB.toLocaleString()} KB`;
+                
+                updatePreview();
+            }
+            
+            // Update file preview
             function updatePreview() {
                 const filename = filenameInput.value.trim() || 'untitled';
                 const filetype = filetypeSelect.value;
                 previewFilename.textContent = `${filename}.${filetype}`;
-                filePreview.style.display = 'block';
             }
             
+            // Event listeners
             filenameInput.addEventListener('input', updatePreview);
             filetypeSelect.addEventListener('change', updatePreview);
+            contentTextarea.addEventListener('input', updateCounters);
             
             // Download file when button is clicked
             downloadBtn.addEventListener('click', function() {
@@ -217,39 +267,26 @@
                 let blob;
                 let fullFilename = `${filename}.${filetype}`;
                 
-                switch(filetype) {
-                    case 'txt':
-                        blob = new Blob([content], { type: 'text/plain' });
-                        break;
-                    case 'pdf':
-                        // Note: Actual PDF generation would require a library like jsPDF
-                        alert('PDF generation would require additional libraries in a real implementation');
+                // For text-based formats
+                const textFormats = ['txt', 'csv', 'html', 'xml', 'md', 'rtf'];
+                if (textFormats.includes(filetype)) {
+                    blob = new Blob([content], { type: 'text/plain' });
+                } 
+                // For JSON
+                else if (filetype === 'json') {
+                    try {
+                        JSON.parse(content);
+                        blob = new Blob([content], { type: 'application/json' });
+                    } catch {
+                        alert('Invalid JSON content');
                         return;
-                    case 'doc':
-                    case 'docx':
-                        // Word document generation would require a library
-                        alert('Word document generation would require additional libraries in a real implementation');
-                        return;
-                    case 'csv':
-                        blob = new Blob([content], { type: 'text/csv' });
-                        break;
-                    case 'json':
-                        try {
-                            JSON.parse(content);
-                            blob = new Blob([content], { type: 'application/json' });
-                        } catch {
-                            alert('Invalid JSON content');
-                            return;
-                        }
-                        break;
-                    case 'html':
-                        case 'xml':
-                    case 'md':
-                    case 'rtf':
-                        blob = new Blob([content], { type: 'text/plain' });
-                        break;
-                    default:
-                        blob = new Blob([content], { type: 'text/plain' });
+                    }
+                }
+                // For PDF or Word (placeholder)
+                else {
+                    alert(`${filetype.toUpperCase()} generation would require additional libraries in a real implementation. For now, we'll save as text file.`);
+                    fullFilename = `${filename}.txt`;
+                    blob = new Blob([content], { type: 'text/plain' });
                 }
                 
                 // Create download link
@@ -259,13 +296,18 @@
                 a.download = fullFilename;
                 document.body.appendChild(a);
                 a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
             });
             
-            // Initial preview update
+            // Initial updates
+            updateCounters();
             updatePreview();
         });
     </script>
 </body>
-  </html>
+</html>
