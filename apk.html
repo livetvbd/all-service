@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML to APK Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #5649c0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #00b894;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #dfe6e9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+        
+        .container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+        
+        .code-editor {
+            position: relative;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .editor-header {
+            background-color: #f1f3f5;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .editor-dots {
+            display: flex;
+            margin-right: 10px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .dot-red {
+            background-color: #ff6b6b;
+        }
+        
+        .dot-yellow {
+            background-color: #ffd166;
+        }
+        
+        .dot-green {
+            background-color: #06d6a0;
+        }
+        
+        .editor-filename {
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        textarea:focus {
+            outline: none;
+        }
+        
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        .preview-section {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .preview-title {
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .preview-content {
+            color: var(--dark);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            textarea {
+                min-height: 200px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-mobile-alt"></i> HTML to APK Converter</h1>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="html">HTML Editor</div>
+            <div class="tab" data-tab="settings">APK Settings</div>
+        </div>
+        
+        <div class="tab-content active" id="html-tab">
+            <div class="form-group">
+                <label for="html-code">Your HTML Code</label>
+                <div class="code-editor">
+                    <div class="editor-header">
+                        <div class="editor-dots">
+                            <div class="dot dot-red"></div>
+                            <div class="dot dot-yellow"></div>
+                            <div class="dot dot-green"></div>
+                        </div>
+                        <div class="editor-filename">index.html</div>
+                    </div>
+                    <textarea id="html-code" placeholder="<!DOCTYPE html>
+<html>
+<head>
+    <title>My App</title>
+</head>
+<body>
+    <!-- Your HTML content here -->
+</body>
+</html>"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="settings-tab">
+            <div class="form-group">
+                <label for="app-name">App Name</label>
+                <input type="text" id="app-name" placeholder="My Awesome App">
+            </div>
+            
+            <div class="form-group">
+                <label for="package-name">Package Name (com.example.myapp)</label>
+                <input type="text" id="package-name" placeholder="com.example.myapp">
+            </div>
+            
+            <div class="form-group">
+                <label for="version">Version (1.0.0)</label>
+                <input type="text" id="version" placeholder="1.0.0">
+            </div>
+        </div>
+        
+        <button class="btn" id="generateBtn">
+            <i class="fas fa-cogs"></i> Generate APK
+        </button>
+        
+        <div class="preview-section" id="previewSection" style="display: none;">
+            <div class="preview-title">APK Information</div>
+            <div class="preview-content">
+                <p>App Name: <span id="previewAppName">My App</span></p>
+                <p>Package: <span id="previewPackage">com.example.myapp</span></p>
+                <p>Version: <span id="previewVersion">1.0.0</span></p>
+                <p>File: <span id="previewFilename">my_app.apk</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Generate APK button
+            const generateBtn = document.getElementById('generateBtn');
+            generateBtn.addEventListener('click', function() {
+                const htmlCode = document.getElementById('html-code').value;
+                const appName = document.getElementById('app-name').value || 'My App';
+                const packageName = document.getElementById('package-name').value || 'com.example.myapp';
+                const version = document.getElementById('version').value || '1.0.0';
+                
+                if (!htmlCode.trim()) {
+                    alert('Please enter some HTML code');
+                    return;
+                }
+                
+                // Update preview section
+                document.getElementById('previewAppName').textContent = appName;
+                document.getElementById('previewPackage').textContent = packageName;
+                document.getElementById('previewVersion').textContent = version;
+                document.getElementById('previewFilename').textContent = `${appName.replace(/\s+/g, '_').toLowerCase()}.apk`;
+                
+                // Show preview section
+                document.getElementById('previewSection').style.display = 'block';
+                
+                // In a real implementation, this would call a backend service to generate the APK
+                // For this demo, we'll simulate it with a download link
+                simulateAPKGeneration(appName, htmlCode);
+            });
+            
+            function simulateAPKGeneration(appName, htmlCode) {
+                // Create a blob with the HTML code (in reality this would be an APK)
+                const blob = new Blob([htmlCode], { type: 'application/octet-stream' });
+                const url = URL.createObjectURL(blob);
+                
+                // Create download link
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${appName.replace(/\s+/g, '_').toLowerCase()}.apk`;
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                
+                // Trigger download
+                a.click();
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 100);
+                
+                // Show success message
+                alert('APK generation complete! Your download should start shortly.\n\nNote: This demo generates a text file. A real implementation would require a backend service or Cordova/Capacitor to build actual APKs.');
+            }
+        });
+    </script>
+</body>
+  </html>
