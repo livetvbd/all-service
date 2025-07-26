@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইসলামিক এফএম - আল্লাহর সুমধুর বাণী</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a4721;
+            --secondary: #d4af37;
+            --light: #f8f6f0;
+            --dark: #1a1a1a;
+            --accent: #8e6c4d;
+            --gold-light: #f9e076;
+            --gold-dark: #b8860b;
+            --green-light: #2e8b57;
+            --green-dark: #083e1d;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Bengali', 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--primary) 100%);
+            color: var(--light);
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(10, 71, 33, 0.1) 0%, transparent 25%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,50 Q25,25 50,50 T100,50" stroke="rgba(212,175,55,0.03)" stroke-width="1" fill="none"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(10, 71, 33, 0.9);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--secondary);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(15deg);
+        }
+        
+        .logo-text h1 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--gold-light), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: -3px;
+            letter-spacing: 3px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold-light);
+        }
+        
+        nav a i {
+            font-size: 1.1rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 30s linear infinite;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero h1 span {
+            display: block;
+            color: var(--gold-light);
+            font-size: 4.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Player Section */
+        .player-section {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .player-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 71, 33, 0.6) 0%, rgba(8, 62, 29, 0.8) 100%);
+            z-index: -1;
+        }
+        
+        .player-section::after {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gold-light), var(--secondary), var(--gold-light));
+            z-index: -2;
+            border-radius: 25px;
+            animation: borderAnimation 3s linear infinite;
+            background-size: 200% 200%;
+        }
+        
+        .player-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .player-title h2 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            display: inline-block;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .player-title h2::before,
+        .player-title h2::after {
+            content: "•";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+        
+        .player-title h2::before {
+            left: -10px;
+        }
+                
+        .player-title h2::after {
+            right: -10px;
+        }
+        
+        .player-box {
+            text-align: center;
+        }
+        
+        .play-btn {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--green-light), var(--primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 4px solid var(--secondary);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .play-btn::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            animation: pulse 2s infinite;
+            z-index: -1;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.9);
+        }
+        
+        .play-btn i {
+            font-size: 50px;
+            color: var(--gold-light);
+            transition: all 0.3s ease;
+        }
+        
+        .status {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            color: var(--gold-light);
+            font-weight: 600;
+            min-height: 30px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .volume-control {
+            width: 80%;
+            margin: 40px auto 0;
+        }
+        
+        .volume-control label {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .volume-control input {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            outline: none;
+            overflow: hidden;
+        }
+        
+        .volume-control input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            background: var(--secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.8), 
+                        -407px 0 0 400px rgba(212, 175, 55, 0.3);
+            border: 2px solid var(--gold-light);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 3rem;
+            color: var(--gold-light);
+            display: inline-block;
+            position: relative;
+            padding: 0 30px;
+        }
+        
+        .section-title h2::before,
+        .section-title h2::after {
+            content: "✧";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+        
+        .section-title h2::before {
+            left: -20px;
+        }
+        
+        .section-title h2::after {
+            right: -20px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 15px auto 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+                        transition: all 0.5s ease;
+            border: 1px solid var(--glass-border);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 71, 33, 0.6) 0%, rgba(8, 62, 29, 0.8) 100%);
+            z-index: -1;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .card-header {
+            background: rgba(212, 175, 55, 0.2);
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .card-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
+        }
+        
+        .card-header i {
+            font-size: 3rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-header h3 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .card-body p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .card-body .arabic {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2rem;
+            text-align: center;
+            margin: 30px 0;
+            line-height: 3rem;
+            color: var(--gold-light);
+            direction: rtl;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-body .translation {
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            border-top: 1px dashed rgba(212, 175, 55, 0.3);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Schedule Section */
+        .schedule-section {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 80px 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .schedule-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 71, 33, 0.6) 0%, rgba(8, 62, 29, 0.8) 100%);
+            z-index: -1;
+        }
+        
+        .schedule-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .schedule-title h3 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 2.5rem;
+            color: var(--gold-light);
+            margin-bottom: 15px;
+        }
+        
+        .schedule-title p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .schedule-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .schedule-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .schedule-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(10px);
+        }
+        
+        .schedule-time {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            min-width: 90px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        
+        .schedule-program {
+            flex: 1;
+        }
+        
+        .schedule-program h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--light);
+        }
+        
+        .schedule-program p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(10, 71, 33, 0.9);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+            border-top: 1px solid var(--secondary);
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="20" viewBox="0 0 100 20"><path d="M0,20 Q25,0 50,20 T100,20" fill="rgba(212,175,55,0.05)"/></svg>');
+            background-size: 50px 20px;
+            opacity: 0.3;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+                    }
+        
+        .footer-logo .logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+        
+        .footer-links h3 {
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold-light);
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0.7; }
+            50% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0.95); opacity: 0.7; }
+        }
+        
+        @keyframes borderAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero h1 span {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero h1 span {
+                font-size: 3.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .schedule-section {
+                padding: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1 span {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .player-section {
+                padding: 30px;
+            }
+            
+            .play-btn {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .play-btn i {
+                font-size: 40px;
+            }
+            
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 span {
+                font-size: 2.5rem;
+            }
+            
+            .player-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .schedule-title h3 {
+                font-size: 2rem;
+            }
+            
+            .schedule-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-mosque"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>ইসলামিক এফএম</h1>
+                    <p>আল্লাহর সুমধুর বাণী</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> হোম</a></li>
+                    <li><a href="#"><i class="fas fa-radio"></i> রেডিও</a></li>
+                    <li><a href="#"><i class="fas fa-book-quran"></i> কুরআন</a></li>
+                    <li><a href="#"><i class="fas fa-pray"></i> দোয়া</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> সম্পর্কে</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>আল্লাহর পথে আপনার সঙ্গী<br><span>ইসলামিক এফএম</span></h1>
+                <p>ইসলামিক শিক্ষা, কুরআন তিলাওয়াত, হাদিস ও ইসলামিক আলোচনা শোনার এক অনন্য মাধ্যম। আমাদের সাথে যুক্ত হোন এবং প্রতিদিনের জীবনে ইসলামিক জ্ঞানের আলো ছড়িয়ে দিন।</p>
+                
+                <!-- Player Section -->
+                <div class="player-section">
+                    <div class="player-title">
+                        <h2>সরাসরি শুনুন</h2>
+                    </div>
+                    <div class="player-box">
+                        <div class="play-btn" id="playButton">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <p class="status" id="status">স্টপ করা অবস্থায়</p>
+                        <div class="volume-control">
+                            <label for="volume"><i class="fas fa-volume-up"></i> ভলিউম কন্ট্রোল</label>
+                            <input type="range" id="volume" min="0" max="1" step="0.01" value="0.7">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>ইসলামিক জ্ঞান</h2>
+                <p>কুরআন ও হাদিসের আলোকে ইসলামিক শিক্ষা ও উপদেশ</p>
+            </div>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-star-and-crescent"></i>
+                        <h3>কুরআনের আয়াত</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="arabic">إِنَّ مَعَ الْعُسْرِ يُسْرًا</p>
+                        <p class="translation">"নিশ্চয়ই কষ্টের সঙ্গেই রয়েছে স্বাচ্ছন্দ্য।" (সূরা আল-ইনশিরাহ: ৬)</p>
+                        <p>আল্লাহ তায়ালা আমাদের জানাচ্ছেন যে প্রতিটি কষ্টের পরেই রয়েছে স্বস্তি। আমাদের জীবনে যখনই কঠিন সময় আসে, আমাদের মনে রাখতে হবে এরপরেই আল্লাহর রহমত আসবে। এই আয়াত আমাদের ধৈর্য্য ও আশাবাদী হতে শিক্ষা দেয়।</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-book"></i>
+                        <h3>হাদিস শরীফ</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>"তোমাদের মধ্যে সেই ব্যক্তি সর্বোত্তম যে কুরআন শিক্ষা করে এবং অন্যকে শিক্ষা দেয়।" (বুখারী)</p>
+                        <p>এই হাদিস থেকে আমরা শিক্ষা পাই যে ইসলামে জ্ঞান অর্জন ও তা বিতরণের গুরুত্ব অপরিসীম। কুরআন শিক্ষা করা এবং তা অন্যকে শিক্ষা দেওয়া মহান সওয়াবের কাজ। প্রতিটি মুসলিমের উচিত কুরআন শিক্ষা করা এবং তা অন্যদের শেখানো।</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>ইসলামিক উপদেশ</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>প্রতিদিনের জীবনে ইসলামিক মূল্যবোধ বজায় রাখার গুরুত্ব অপরিসীম। ছোট ছোট আমল দিয়ে শুরু করুন:</p>
+                        <ul style="padding-left: 20px; margin-top: 15px;">
+                            <li>প্রতিদিন ৫ ওয়াক্ত নামাজ পড়ুন</li>
+                            <li>প্রতিদিন কিছু না কিছু দান করুন</li>
+                            <li>মা-বাবার সাথে ভালো ব্যবহার করুন</li>
+                            <li>প্রতিবেশীর হক আদায় করুন</li>
+                            <li>প্রতিদিন কুরআন তিলাওয়াত করুন</li>
+                            <li>সর্বদা সত্য কথা বলুন</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule-section">
+        <div class="container">
+            <div class="schedule-title">
+                <h3>আজকের অনুষ্ঠান সূচি</h3>
+                <p>আমাদের দৈনিক ইসলামিক প্রোগ্রামের সময়সূচী</p>
+            </div>
+            
+            <div class="schedule-items">
+                <div class="schedule-item">
+                    <div class="schedule-time">সকাল ৭:০০</div>
+                    <div class="schedule-program">
+                        <h4>ফজরের নামাজ পরবর্তী দোয়া ও যিকির</h4>
+                        <p>মাওলানা মুহাম্মদ আব্দুল্লাহ</p>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">সকাল ৯:৩০</div>
+                    <div class="schedule-program">
+                        <h4>কুরআন তিলাওয়াত ও তাফসির</h4>
+                        <p>হাফেজ মুহাম্মদ ইব্রাহিম</p>
+                    </div>
+                </div>
+                 <div class="schedule-item">
+                    <div class="schedule-time">দুপুর ১২:৩০</div>
+                    <div class="schedule-program">
+                        <h4>ইসলামিক সংগীত ও নাশিদ</h4>
+                        <p>বিশেষ আয়োজন</p>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">বিকাল ৪:০০</div>
+                    <div class="schedule-program">
+                        <h4>শিশু-কিশোরদের ইসলামিক শিক্ষা</h4>
+                        <p>ড. আয়েশা সিদ্দিকা</p>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">সন্ধ্যা ৬:৩০</div>
+                    <div class="schedule-program">
+                        <h4>প্রখ্যাত আলেমদের আলোচনা</h4>
+                        <p>শাইখ আহমেদ আল-মিসরি</p>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-time">রাত ৯:০০</div>
+                    <div class="schedule-program">
+                        <h4>ইশার নামাজ পরবর্তী বিশেষ অনুষ্ঠান</h4>
+                        <p>বিভিন্ন আলেম</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-mosque"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>ইসলামিক এফএম</h1>
+                            <p>আল্লাহর সুমধুর বাণী</p>
+                        </div>
+                    </div>
+                    <p>ইসলামিক শিক্ষা, কুরআন তিলাওয়াত, হাদিস ও ইসলামিক আলোচনা শোনার এক অনন্য মাধ্যম। আমাদের সাথে যুক্ত হোন এবং প্রতিদিনের জীবনে ইসলামিক জ্ঞানের আলো ছড়িয়ে দিন।</p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>দ্রুত লিংক</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> হোম</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> লাইভ রেডিও</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> কুরআন তিলাওয়াত</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> হাদিস শরীফ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> ইসলামিক দোয়া</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>প্রোগ্রাম</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> কুরআন তাফসির</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> ইসলামিক আলোচনা</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> শিশু শিক্ষা</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> নাশিদ ও হামদ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> বিশেষ আয়োজন</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>যোগাযোগ</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +৮৮০ ১৭XX-XXXXXX</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> contact@islamicfm.com</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> ২৪/৭ লাইভ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; ২০২৩ ইসলামিক এফএম | সকল অধিকার সংরক্ষিত</p>
+                <p>ডিজাইন ও ডেভেলপমেন্ট: <a href="#" style="color: var(--gold-light);">আমাদের টিম</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio Player -->
+    <audio id="audioPlayer" preload="none">
+        <source src="https://securestreams7.autopo.st/?uri=http://66.45.232.131:9994/;stream/1" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const playButton = document.getElementById('playButton');
+            const statusText = document.getElementById('status');
+            const volumeControl = document.getElementById('volume');
+            
+            // Set initial volume
+            audioPlayer.volume = volumeControl.value;
+            
+            // Play/Pause functionality
+            playButton.addEventListener('click', function() {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                    playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                    playButton.classList.add('pulse');
+                    statusText.textContent = 'শুনছেন...';
+                    statusText.style.color = '#d4af37';
+                } else {
+                    audioPlayer.pause();
+                    playButton.innerHTML = '<i class="fas fa-play"></i>';
+                    playButton.classList.remove('pulse');
+                    statusText.textContent = 'স্টপ করা অবস্থায়';
+                    statusText.style.color = '#d4af37';
+                }
+            });
+            
+            // Volume control
+            volumeControl.addEventListener('input', function() {
+                audioPlayer.volume = volumeControl.value;
+            });
+            
+            // Handle audio errors
+            audioPlayer.addEventListener('error', function() {
+                statusText.textContent = 'ত্রুটি: স্ট্রিম লোড করতে ব্যর্থ';
+                statusText.style.color = '#ff6b6b';
+                playButton.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+            });
+            
+            // Handle buffering
+            audioPlayer.addEventListener('waiting', function() {
+                statusText.textContent = 'বাফারিং... দয়া করে অপেক্ষা করুন';
+                statusText.style.color = '#4ecdc4';
+            });
+            
+            // Handle playing after buffering
+            audioPlayer.addEventListener('playing', function() {
+                statusText.textContent = 'শুনছেন...';
+                statusText.style.color = '#d4af37';
+            });
+            
+            // Update time every second
+            setInterval(function() {
+                if (!audioPlayer.paused) {
+                    statusText.textContent = 'শুনছেন...';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
