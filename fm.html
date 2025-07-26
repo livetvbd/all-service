@@ -845,6 +845,24 @@ header {
     </style>
 </head>
 <body>
+    <script>
+// পেজ লোড হলে ইভেন্ট লিসেনার যোগ করুন
+window.addEventListener('load', function() {
+    // ব্রাউজার ইভেন্ট হ্যান্ডেল করার ফাংশন
+    function handleBeforeUnload(e) {
+        // কাস্টম মেসেজ (নতুন ব্রাউজারে এটি শো করবে না, কিন্তু ডিফল্ট মেসেজ দেখাবে)
+        e.preventDefault();
+        e.returnValue = 'আপনি কি নিশ্চিতভাবে ওয়েবসাইট থেকে বের হতে চান? আপনার অডিও স্ট্রিমিং বন্ধ হয়ে যাবে।';
+        return e.returnValue;
+    }
+
+    // ইভেন্ট লিসেনার যোগ করুন
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // যদি আপনি পরে এই ফিচার ডিসেবল করতে চান
+    // window.removeEventListener('beforeunload', handleBeforeUnload);
+});
+    </script>
     <!-- Header Section -->
     <header>
         <div class="container header-container">
