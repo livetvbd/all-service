@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenco – Power Your Earnings ⚡️💰</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - Hind Siliguri for Bengali -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --dark-color: #14213d;
+            --light-color: #f8f9fa;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0 3rem;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-title {
+            font-weight: 700;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-weight: 300;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: none;
+            overflow: hidden;
+            background: white;
+            margin-bottom: 2rem;
+        }
+        
+        .card-header {
+            background: var(--gradient);
+            color: white;
+            font-weight: 600;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #3a0ca3 0%, #4361ee 100%);
+            transform: translateY(-2px);
+        }
+        
+        .btn-send {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-send:hover {
+            background: #d91a6e;
+            transform: translateY(-2px);
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .transaction-id {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            padding: 12px;
+            border-radius: 8px;
+            word-break: break-all;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .help-line {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .help-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .help-btn:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        
+        .logo {
+            height: 40px;
+            margin-right: 12px;
+        }
+        
+        .steps-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 1.2rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background: var(--accent-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-left: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/40/4361ee/ffffff?text=Z" alt="ZencoBD Logo" class="logo">
+                ZencoBD
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">হোম</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">কিভাবে কাজ করে</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">সুবিধা</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">যোগাযোগ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title">আপনার আয় শুরু করুন আজই! ⚡️💰</h1>
+            <p class="hero-subtitle">ZencoBD এর সাথে নিরাপদ উপার্জনের প্ল্যাটফর্ম</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- How It Works Steps -->
+        <div class="steps-container">
+            <h4 class="text-center mb-4">🤖 প্রসেস শুরু করুন নিচের ধাপে ধাপে!</h4>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">প্রথমে আপনার WhatsApp নাম্বার দিন <span class="emoji">📱</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">তারপর "Send Code" বাটনে ক্লিক করুন <span class="emoji">🔐</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">১ মিনিট অপেক্ষা করুন <span class="emoji">⏳</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-text">যদি আপনার WhatsApp-এ ভেরিফিকেশন কোড আসে <span class="emoji">✅</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-text">তাহলে সেই কোডটি নিচের ঘরে বসান <span class="emoji">🔢</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">6</div>
+                <div class="step-text">এরপর "Start Earning" বাটনে ক্লিক করুন <span class="emoji">💰</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">7</div>
+                <div class="step-text">সফল হলে একটি Transaction ID আসবে <span class="emoji">📄</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">8</div>
+                <div class="step-text">এই ID কপি করে আমাদের হেল্পলাইনে যোগাযোগ করুন <span class="emoji">🤝</span></div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">9</div>
+                <div class="step-text">যাচাই করে আপনি পেমেন্ট পেয়ে যাবেন! <span class="emoji">🎉</span></div>
+            </div>
+            
+            <div class="alert alert-warning mt-4">
+                ⚠️ ১ মিনিটের মধ্যে কোড না আসলে মানে আপনার নাম্বার টি গ্রহণ যোগ্য নয়।
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="mb-0">🙌 ধন্যবাদ, আপনার আয় শুরু হোক আজই! <span class="emoji">🚀</span></p>
+            </div>
+        </div>
+
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <img src="https://via.placeholder.com/40/4361ee/ffffff?text=Z" alt="ZencoBD Logo" class="logo mb-3">
+            <h3 class="mb-3">ZencoBD</h3>
+            <p class="mb-4">নিরাপদ উপার্জনের প্ল্যাটফর্ম</p>
+            <p class="text-muted">© 2023 ZencoBD. সকল স্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
+
+    <!-- Help Line Button -->
+    <div class="help-line">
+        <a href="https://t.me/ZencoBD" class="help-btn" target="_blank" title="হেল্পলাইনে যোগাযোগ করুন">
+            <i class="fas fa-headset"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+</body>
+  </html>
